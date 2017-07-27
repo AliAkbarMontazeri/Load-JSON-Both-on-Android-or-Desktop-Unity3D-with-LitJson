@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
@@ -12,29 +12,12 @@ public class LoadReadJson : MonoBehaviour {
     public int valueItem;
 
     void Start() {
-        //if(Application.platform == RuntimePlatform.Android){
-        //    //StartCoroutine("Mobile");
-        //    ReadJSONMobile();
-        //}
-        //else if(Application.isEditor){
-        //    if(File.Exists(Application.streamingAssetsPath + "/ValueTest.json")){
-        //        Debug.Log("Ada");
-        //    }
-        //    _itemData = JsonMapper.ToObject(File.ReadAllText(Application.streamingAssetsPath + "/ValueTest.json"));
-        //}
-        ReadJSONMobile();
+        ReadJSON();
         ConstructItemDatabase();
         Debug.Log(valueItem);
     }
-
-    IEnumerator Mobile() {
-        WWW loadDb = new WWW(Application.streamingAssetsPath + "/ValueTest.json");
-        yield return loadDb;
-        File.WriteAllBytes(Application.persistentDataPath + "/ValueTest.json", loadDb.bytes);
-        _itemData = JsonMapper.ToObject(File.ReadAllText(Application.persistentDataPath + "/ValueTest.json"));
-    }
-
-    void ReadJSONMobile() {
+    
+    void ReadJSON() {
         TextAsset file = Resources.Load("ValueTest") as TextAsset;
         string content = file.ToString();
         _itemData = JsonMapper.ToObject(content);

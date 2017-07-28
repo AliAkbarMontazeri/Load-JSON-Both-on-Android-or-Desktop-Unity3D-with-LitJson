@@ -12,12 +12,12 @@ public class LoadReadJson : MonoBehaviour {
     public int valueItem;
 
     void Start() {
-        ReadJSON();
+        MapToObject();
         ConstructItemDatabase();
         Debug.Log(valueItem);
     }
     
-    void ReadJSON() {
+    void MapToObject() {
         TextAsset file = Resources.Load("ValueTest") as TextAsset;
         string content = file.ToString();
         _itemData = JsonMapper.ToObject(content);
